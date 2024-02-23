@@ -25,17 +25,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : ComponentActivity() {
-    class MainViewModelFactory() : ViewModelProvider.Factory {
+    class MainViewModelFactory(val newsRepository: NewsRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MainViewModel() as T
+            return MainViewModel(newsRepository) as T
         }
     }
-    lateinit var viewmodel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        val viewmodel =ViewModelProvider(this,MainViewModelFactory())[MainViewModel::class.java]
+        val viewmodel =ViewModelProvider(this,MainViewModelFactory(Dependencies.newsRepository))[MainViewModel::class.java]
         setContent {
             TestCasesTheme {
                 // A surface container using the 'background' color from the theme
