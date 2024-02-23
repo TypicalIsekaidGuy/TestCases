@@ -25,35 +25,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : ComponentActivity() {
-    class MainViewModelFactory(val newsList: MutableState<List<NewsCategory>>) : ViewModelProvider.Factory {
+    class MainViewModelFactory() : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MainViewModel(newsList = newsList) as T
+            return MainViewModel() as T
         }
     }
     lateinit var viewmodel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var articles: MutableState<List<NewsCategory>> = mutableStateOf(listOf())
-        CoroutineScope(Dispatchers.Main).launch(Dispatchers.Default) {
-            try {
-                val list = mutableListOf<NewsCategory>()/*
-                val resp = newsApiService.getTopHeadlines(apiKey,NewsCategoryEnum.BUSINESS.categoryName)
-                Log.d("TAG",resp.articles.toString())*/
-                NewsCategoryEnum.values().forEach { category ->
-                    val response = RetrofitClient.newsApiService.getTopHeadlines(RetrofitClient.API_KEY, category.categoryName)
-                    val newsCat = NewsCategory(category.categoryLabel,response.articles)
-                    list.add(newsCat)
-                    Log.d("TAG",list.toString())
-                }
-                articles.value = list.sortedBy { it.name } // sort
 
-            } catch (e: Exception) {
-                Log.d("TAG111",e.message.toString())
-                // Handle exception or error during the API request
-            }
-        }
-        val viewmodel =ViewModelProvider(this,MainViewModelFactory(articles))[MainViewModel::class.java]
+        val viewmodel =ViewModelProvider(this,MainViewModelFactory())[MainViewModel::class.java]
         setContent {
             TestCasesTheme {
                 // A surface container using the 'background' color from the theme
