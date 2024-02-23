@@ -10,7 +10,18 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainViewModel(val newsList: MutableState<List<NewsCategory>>): ViewModel() {
-
+/*    fun onSearchChange(text: String){
+        _searchText.value= text
+        val filteredData = if (_searchText.value.isBlank()) {
+            // If the search text is empty, show all data
+            currentCurrencyList.toList()
+        } else {
+            currentCurrencyList.filter { currency ->
+                currency.name.contains(_searchText.value, ignoreCase = true)
+            }
+        }
+        _data.value = filteredData
+    }*/
     init {
     }
 }

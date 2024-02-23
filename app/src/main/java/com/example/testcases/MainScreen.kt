@@ -1,6 +1,7 @@
 package com.example.testcases
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,10 +39,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.testcases.ui.theme.DarkBlack
 import com.example.testcases.ui.theme.LightBlack
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 @Composable
 fun MainScreen(viewmodel:MainViewModel){
@@ -116,7 +119,7 @@ fun NewsArticle(article: Article){
                 uriHandler.openUri(article.url)
             }
     ) {
-        if(article.url.isNullOrEmpty()){
+        if(article.urlToImage.isNullOrEmpty()){
             Image(
                 painter = painterResource(id = R.drawable.test_img),
                 contentDescription = null,
@@ -131,11 +134,22 @@ fun NewsArticle(article: Article){
                 mutableStateOf<Bitmap?>(null)
             }
 
-            LaunchedEffect(article.url) {
-                val bitmap = withContext(Dispatchers.IO) {
-                    Picasso.get().load(article.url).get()
+            LaunchedEffect(article.urlToImage) {
+                Log.d("GIGA",article.urlToImage)
+                try {
+
+                    val bitmap = withContext(Dispatchers.IO) {
+
+
+                        Picasso.get().load(article.urlToImage).get()
+
+
+                    }
+                    image.value = bitmap
                 }
-                image.value = bitmap
+                catch (e: Exception){
+                    e.printStackTrace()
+                }
             }
 
 
@@ -155,7 +169,7 @@ fun NewsArticle(article: Article){
 
         Box(modifier = Modifier
             .align(Alignment.BottomStart)
-            .background(Brush.verticalGradient(listOf(Color.Transparent, LightBlack)))){
+            .background(Brush.verticalGradient(listOf(Color.Transparent, LightBlack, DarkBlack)))){
 
 
 
