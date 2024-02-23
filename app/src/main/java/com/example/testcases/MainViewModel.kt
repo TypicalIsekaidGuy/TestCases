@@ -26,15 +26,9 @@ class MainViewModel(): ViewModel() {
         _data.value = filteredData
     }*/
     init {
-    CoroutineScope(Dispatchers.Main).launch(Dispatchers.Default) {
+    viewModelScope.launch {
         try {
-            val list = mutableListOf<NewsCategory>()
-            NewsCategoryEnum.values().forEach { category ->
-                val response = RetrofitClient.newsApiService.getTopHeadlines(RetrofitClient.API_KEY, category.categoryName)
-                val newsCat = NewsCategory(category.categoryLabel,response.articles)
-                list.add(newsCat)
-                Log.d("TAG",list.toString())
-            }
+            val list = fetchNewsCategories()
             newsList.value = list.sortedBy { it.name } // sort
 
         } catch (e: Exception) {
@@ -42,5 +36,25 @@ class MainViewModel(): ViewModel() {
             // Handle exception or error during the API request
         }
     }
+    }
+    suspend fun fetchNewsCategories(): List<NewsCategory> {
+        val newsCategories = mutableListOf<NewsCategory>()
+
+        try {
+            NewsCategoryEnum.values().forEach { category ->
+                val response = RetrofitClient.newsApiService.getTopHeadlines(
+                    RetrofitClient.API_KEY,
+                    category.categoryName
+                )
+                val newsCat = NewsCategory(category.categoryLabel, response.articles)
+                newsCategories.add(newsCat)
+                Log.d("TAG", newsCategories.toString())
+            }
+        } catch (e: Exception) {
+            Log.d("TAG111", e.message.toString())
+            // Handle exception or error during the API request
+        }
+
+        return newsCategories
     }
 }
