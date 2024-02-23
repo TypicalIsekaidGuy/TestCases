@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                 articles.value = list.sortedBy { it.name } // sort
 
             } catch (e: Exception) {
-                Log.d("TAG",e.message.toString())
+                Log.d("TAG111",e.message.toString())
                 // Handle exception or error during the API request
             }
         }

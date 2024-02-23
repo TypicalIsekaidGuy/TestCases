@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     val BASE_URL = "https://newsapi.org"
-    val API_KEY = "6ef6b129268941798463d647c73e91f6"
+    val API_KEY = "a83edc16c98040c58211461ba6751b28"
     val NEWS_COUNT = 20
 
     val newsApiService: NewsApiService by lazy {
