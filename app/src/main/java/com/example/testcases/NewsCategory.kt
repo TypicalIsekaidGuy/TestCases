@@ -2,6 +2,6 @@ package com.example.testcases
 
 data class NewsCategory(
     val name: String,
-    val articleList: List<ArticleEntity>
+    val articleList: List<Article>
 )
 

@@ -3,10 +3,10 @@ package com.example.testcases
 data class NewsResponse(
     val status: String,
     val totalResults: Int,
-    val articles: List<Article>
+    val articles: List<ArticleJson>
 )
 
-data class Article(
+data class ArticleJson(
     val source: Source,
     val author: String?,
     val title: String,

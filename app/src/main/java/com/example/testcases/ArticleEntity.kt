@@ -1,8 +1,11 @@
 package com.example.testcases
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.ByteArrayOutputStream
 
 @Entity(tableName = "articles")
 data class ArticleEntity(
@@ -14,6 +17,6 @@ data class ArticleEntity(
     val url: String,
     val publishedAt: String,
     val content: String?,
-    val imageBitmap: ImageBitmap?,
-    val categoryName: String
+    val imageByteArray: ByteArray?,
+    val categoryLabel: String
 )

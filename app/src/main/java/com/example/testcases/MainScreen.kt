@@ -109,7 +109,7 @@ fun CategoryBlock(category: NewsCategory){
     }
 }
 @Composable
-fun NewsArticle(article: ArticleEntity){
+fun NewsArticle(article: Article){
     val uriHandler = LocalUriHandler.current
     Box(
         modifier = Modifier

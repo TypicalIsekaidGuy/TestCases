@@ -7,6 +7,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import com.example.testcases.utils.toByteArray
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -18,7 +19,21 @@ class NewsRepository {
     val newsList: MutableState<List<NewsCategory>> = mutableStateOf(listOf())
 
 
-    suspend fun fetchNewsCategories(){
+    suspend fun fetchNewsCategories(
+        cacheToDb: suspend (newsList: List<NewsCategory>) -> Unit,
+        fetchFromDBNewsCategories: () -> List<NewsCategory>,
+        hasInternetConnection: Boolean
+    ){
+        if(hasInternetConnection){
+            fetchFromInternetNewsCategories()
+            cacheToDb(newsList.value)
+        }
+        else{
+            newsList.value = fetchFromDBNewsCategories()
+        }
+    }
+
+    private suspend fun fetchFromInternetNewsCategories(){
         val newsCategories = mutableListOf<NewsCategory>()
 
         try {
@@ -50,7 +65,7 @@ class NewsRepository {
                         e.printStackTrace()
                     }
 
-                    ArticleEntity(
+                    Article(
                         source = article.source,
                         author = article.author,
                         title = article.title,
@@ -59,7 +74,7 @@ class NewsRepository {
                         publishedAt = article.publishedAt,
                         content = article.content,
                         imageBitmap = imageBitmap?.asImageBitmap(),
-                        categoryName = category.categoryName
+                        categoryLabel = category.categoryLabel
                     )
                 }
                 val newsCat = NewsCategory(category.categoryLabel, articleEntities)
