@@ -48,40 +48,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    suspend fun loadNewsByCategory(category: NewsCategoryEnum): NewsCategory {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://newsapi.org")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val newsApiService = retrofit.create(NewsApiService::class.java)
-
-        var articles = listOf<Article>()
-        try {
-            val response = newsApiService.getTopHeadlines("6ef6b129268941798463d647c73e91f6", category.categoryName)
-
-            if (response.status == "ok") {
-                articles = response.articles
-                Log.d("TAG",articles.toString())
-            } else {
-                response.status?.let { Log.d("TAG", it) }
-            }
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return NewsCategory(category.categoryName, articles)
-    }
-
-    suspend fun loadNewsAllCategories(): List<NewsCategory>{
-
-        val list = mutableListOf<NewsCategory>()
-        NewsCategoryEnum.values().forEach { category ->
-            CoroutineScope(Dispatchers.Main).launch {
-                list.add(loadNewsByCategory(category))
-                Log.d("TAG",list.toString())
-            }
-        }
-        return list
-    }
 }

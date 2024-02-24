@@ -109,7 +109,7 @@ fun CategoryBlock(category: NewsCategory){
     }
 }
 @Composable
-fun NewsArticle(article: Article){
+fun NewsArticle(article: ArticleEntity){
     val uriHandler = LocalUriHandler.current
     Box(
         modifier = Modifier
@@ -119,7 +119,7 @@ fun NewsArticle(article: Article){
                 uriHandler.openUri(article.url)
             }
     ) {
-        if(article.urlToImage.isNullOrEmpty()){
+        if(article.imageBitmap == null){
             Image(
                 painter = painterResource(id = R.drawable.test_img),
                 contentDescription = null,
@@ -130,38 +130,14 @@ fun NewsArticle(article: Article){
         }
         else{
 
-            var image = remember {
-                mutableStateOf<Bitmap?>(null)
-            }
-
-            LaunchedEffect(article.urlToImage) {
-                Log.d("GIGA",article.urlToImage)
-                try {
-
-                    val bitmap = withContext(Dispatchers.IO) {
-
-
-                        Picasso.get().load(article.urlToImage).get()
-
-
-                    }
-                    image.value = bitmap
-                }
-                catch (e: Exception){
-                    e.printStackTrace()
-                }
-            }
-
-
-                image.value?.let { it1 ->
                     Image(
-                        bitmap = it1.asImageBitmap(),
+                        bitmap = article.imageBitmap,
                         contentDescription = null,
                         contentScale = ContentScale.FillHeight,
                         modifier = Modifier
                             .height(250.dp)
                     )
-                }
+
 
         }
 

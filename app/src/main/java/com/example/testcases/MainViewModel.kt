@@ -27,8 +27,8 @@ class MainViewModel(val newsRepo: NewsRepository): ViewModel() {
         _data.value = filteredData
     }*/
     init {
-    viewModelScope.launch {
-        newsRepo.fetchNewsCategories()
-    }
+        viewModelScope.launch {
+            newsRepo.fetchNewsCategories()
+        }
     }
 }
