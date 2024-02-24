@@ -17,6 +17,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.testcases.database.NewsDao
+import com.example.testcases.database.NewsDatabase
+import com.example.testcases.database.NewsRepository
+import com.example.testcases.model.Dependencies
 import com.example.testcases.ui.theme.TestCasesTheme
 import kotlinx.coroutines.launch
 
