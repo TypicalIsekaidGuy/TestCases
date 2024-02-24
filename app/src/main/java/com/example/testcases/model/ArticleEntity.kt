@@ -1,4 +1,4 @@
-package com.example.testcases
+package com.example.testcases.model
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.room.Entity

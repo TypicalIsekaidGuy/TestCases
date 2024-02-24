@@ -1,4 +1,4 @@
-package com.example.testcases
+package com.example.testcases.model
 
 data class NewsResponse(
     val status: String,

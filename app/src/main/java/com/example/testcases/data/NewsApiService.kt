@@ -1,5 +1,7 @@
-package com.example.testcases
+package com.example.testcases.data
 
+import com.example.testcases.data.RetrofitClient
+import com.example.testcases.model.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

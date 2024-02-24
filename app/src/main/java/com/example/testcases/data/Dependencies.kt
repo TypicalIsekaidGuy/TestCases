@@ -1,4 +1,4 @@
-package com.example.testcases
+package com.example.testcases.data
 
 object Dependencies {
    val newsRepository = NewsRepository()
