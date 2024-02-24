@@ -27,7 +27,6 @@ class NewsRepository {
                     RetrofitClient.API_KEY,
                     category.categoryName
                 )
-/*                var imageByteArray: ByteArray?  = null*/
                 var imageBitmap: Bitmap?  = null
                 val articleEntities = response.articles.map { article ->
                     try {
@@ -39,10 +38,6 @@ class NewsRepository {
 
 
                             }
-                            /*                        val bitmap = imageBitmap
-                                                    val stream = ByteArrayOutputStream()
-                                                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
-                                                    imageByteArray = stream.toByteArray()*/
                         }
 
                     }

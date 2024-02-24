@@ -35,7 +35,6 @@ class MainActivity : ComponentActivity() {
         val viewmodel =ViewModelProvider(this,MainViewModelFactory(Dependencies.newsRepository))[MainViewModel::class.java]
         setContent {
             TestCasesTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier
                         .fillMaxSize(),

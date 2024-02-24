@@ -7,21 +7,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainViewModel(val newsRepo: NewsRepository): ViewModel() {
     val TAG = "MAIN_VIEWMODEL"
+
+/*    private val _searchText = MutableStateFlow("")
+    val searchText = _searchText.asStateFlow()
     val newsList: MutableState<List<NewsCategory>>  get() = newsRepo.newsList
-/*    fun onSearchChange(text: String){
+    fun onSearchChange(text: String){
         _searchText.value= text
         val filteredData = if (_searchText.value.isBlank()) {
-            // If the search text is empty, show all data
-            currentCurrencyList.toList()
+            newsRepo.newsList.value
         } else {
-            currentCurrencyList.filter { currency ->
-                currency.name.contains(_searchText.value, ignoreCase = true)
+            newsRepo.newsList.value.map {  }.filter { category ->
+                category.name.contains(_searchText.value, ignoreCase = true)
             }
         }
         _data.value = filteredData

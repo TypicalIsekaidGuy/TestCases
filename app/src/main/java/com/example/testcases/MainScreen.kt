@@ -50,11 +50,6 @@ import java.lang.Exception
 fun MainScreen(viewmodel:MainViewModel){
     val newsList = viewmodel.newsList.value
 
-    val categoriesList = listOf<NewsCategory>(
-        /*        NewsCategory(NewsCategoryEnum.BUSINESS.category, articleList = listOf<Article>( Article("a","a","a","a", Source("a","a",),"a","a","a",),Article("a","a","a","a", Source("a","a",),"a","a","a",),Article("a","a","a","a", Source("a","a",),"a","a","a",),)),
-                NewsCategory(NewsCategoryEnum.ENTERTAINMENT.category, articleList = listOf<Article>( Article("a","a","a","a", Source("a","a",),"a","a","a",),Article("a","a","a","a", Source("a","a",),"a","a","a",),Article("a","a","a","a", Source("a","a",),"a","a","a",),)),
-                NewsCategory(NewsCategoryEnum.GENERAL.category, articleList = listOf<Article>( Article("a","a","a","a", Source("a","a",),"a","a","a",),Article("a","a","a","a", Source("a","a",),"a","a","a",),Article("a","a","a","a", Source("a","a",),"a","a","a",),)),
-           */ )
     LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp),modifier = Modifier
 
         .padding(top = 16.dp)
@@ -129,7 +124,6 @@ fun NewsArticle(article: ArticleEntity){
             )
         }
         else{
-
                     Image(
                         bitmap = article.imageBitmap,
                         contentDescription = null,
@@ -137,8 +131,6 @@ fun NewsArticle(article: ArticleEntity){
                         modifier = Modifier
                             .height(250.dp)
                     )
-
-
         }
 
 
@@ -146,10 +138,6 @@ fun NewsArticle(article: ArticleEntity){
         Box(modifier = Modifier
             .align(Alignment.BottomStart)
             .background(Brush.verticalGradient(listOf(Color.Transparent, LightBlack, DarkBlack)))){
-
-
-
-
             Text(
                 text = article.title,
                 fontSize = 20.sp,
@@ -160,9 +148,6 @@ fun NewsArticle(article: ArticleEntity){
                 maxLines = 6,
                 overflow = TextOverflow.Ellipsis,
             )
-
-
-
         }
     }
 }
