@@ -1,10 +1,10 @@
-package com.example.testcases
+package com.example.testcases.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
+import com.example.testcases.model.ArticleEntity
 
 @Dao
 interface NewsDao {

@@ -1,4 +1,4 @@
-package com.example.testcases
+package com.example.testcases.model
 
 enum class NewsCategoryEnum(val categoryName: String,val categoryLabel: String) {
     BUSINESS("business","Business"),

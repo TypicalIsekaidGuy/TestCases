@@ -1,11 +1,7 @@
-package com.example.testcases
+package com.example.testcases.model
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.ByteArrayOutputStream
 
 @Entity(tableName = "articles")
 data class ArticleEntity(

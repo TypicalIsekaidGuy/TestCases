@@ -1,17 +1,17 @@
-package com.example.testcases
+package com.example.testcases.database
 
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
-import com.example.testcases.utils.toByteArray
+import com.example.testcases.model.NewsCategory
+import com.example.testcases.model.NewsCategoryEnum
+import com.example.testcases.data.RetrofitClient
+import com.example.testcases.model.Article
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.ByteArrayOutputStream
 
 class NewsRepository {
     val TAG = "NewsRepository"

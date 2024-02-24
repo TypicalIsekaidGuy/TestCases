@@ -1,19 +1,19 @@
 package com.example.testcases
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.compose.runtime.MutableState
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testcases.database.NewsDao
+import com.example.testcases.database.NewsRepository
+import com.example.testcases.model.Article
+import com.example.testcases.model.ArticleEntity
+import com.example.testcases.model.NewsCategory
 import com.example.testcases.utils.toBitmap
 import com.example.testcases.utils.toByteArray
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.io.ByteArrayOutputStream
 
 class MainViewModel(
     private val newsRepo: NewsRepository,

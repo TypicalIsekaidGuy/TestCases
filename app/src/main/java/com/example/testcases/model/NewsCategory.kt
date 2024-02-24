@@ -1,4 +1,6 @@
-package com.example.testcases
+package com.example.testcases.model
+
+import com.example.testcases.model.Article
 
 data class NewsCategory(
     val name: String,
